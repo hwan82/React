@@ -75,6 +75,9 @@ function Update(props){
   </form>
 </article>
 }
+function Delete(props){
+
+}
 function App() {
   //const _mode = useState('WELCOME');
   //const mode = _mode[0];
@@ -105,10 +108,22 @@ if(mode === 'WELCOME') {
     }
   }
   content = <Article title={title} body={body}></Article>
-  contentContext=<li><a href={'/update/'+id} onClick={event=>{
+  contentContext=<>
+    <li><a href={'/update/'+id} onClick={event=>{
     event.preventDefault();
     setMode('UPDATE');
   }}>Update</a></li>
+  <li><input type="button" value="Delete" onClick={()=>{
+    const newTopics = [];
+    for(let i=0; i<topics.length; i++) {
+      if(topics[i].id !== id) {
+        newTopics.push(topics[i]);
+      }
+    }
+    setTopics(newTopics);
+    setMode('WELCOME');
+  }}>
+    </input></li></>//<></>grouping tag를 목적으로
 } else if(mode === 'CREATE') {
   content = <Create onCreate={(_title, _body)=>{
     const newTopic = {id:nextId, title: _title, body:_body};
