@@ -128,7 +128,7 @@ if(mode === 'WELCOME') {
   content = <Create onCreate={(_title, _body)=>{
     const newTopic = {id:nextId, title: _title, body:_body};
    //topics.push(newTopic);
-  //setTopics(topics);
+   //setTopics(topics);
     const newTopics = [...topics];
     newTopics.push(newTopic);
     setTopics(newTopics);
@@ -165,7 +165,7 @@ if(mode === 'WELCOME') {
       <Nav topics={topics} onChangeMode={(_id)=>{
         setMode('READ');
         setId(_id);
-      }}></Nav> 
+      }}></Nav>
       <Article></Article>
       {content}
       <ul>
