@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 function Nav(props){
     const lis = [
@@ -7,6 +7,10 @@ function Nav(props){
       //<li><a href="/read/2">css</a></li>
       //<li><a href="/read/3">js</a></li>
     ]
+
+    
+
+
     for(let i=0; i<props.topics.length; i++){
         let t = props.topics[i];
         lis.push(<li key={t.id}>
@@ -30,19 +34,22 @@ function Test() {
     ]);
     console.log(pId);
     console.log(pTitle);
-    if(pId === undefined && pTitle !== undefined) {
-        const newTopic = {id:nextId, title: pTitle, body:pBody};
-        topics.push(newTopic);
-        //setNextId(nextId+1);
-    } else if (pId !== undefined && pTitle !== undefined && pBody !== undefined){
-        const updateTopic = {id:pId, title:pTitle, body:pBody};
-        for(let i=0; i<topics.length; i++){
-            if(topics[i].id === Number(pId)) {
-                topics[i] = updateTopic;
-                break;
+    useEffect( ()=> {
+        if(pId === undefined && pTitle !== undefined) {
+            const newTopic = {id:nextId, title: pTitle, body:pBody};
+            topics.push(newTopic);
+            //setNextId(nextId+1);
+        } else if (pId !== undefined && pTitle !== undefined && pBody !== undefined){
+            const updateTopic = {id:pId, title:pTitle, body:pBody};
+            for(let i=0; i<topics.length; i++){
+                if(topics[i].id === Number(pId)) {
+                    topics[i] = updateTopic;
+                    break;
+                }
             }
         }
-    }
+    });
+    
     /*
     if(pId === undefined && pTitle !== undefined) {
         const newTopic = {id:nextId, title: pTitle, body:pBody};
